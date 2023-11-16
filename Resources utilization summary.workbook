@@ -1,0 +1,1150 @@
+{
+  "version": "Notebook/1.0",
+  "items": [
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "parameters": [
+          {
+            "id": "3cb02ae4-2a73-4290-b672-1c7765224ecb",
+            "version": "KqlParameterItem/1.0",
+            "name": "Subscription",
+            "type": 6,
+            "isRequired": true,
+            "isGlobal": true,
+            "multiSelect": true,
+            "quote": "'",
+            "delimiter": ",",
+            "typeSettings": {
+              "additionalResourceOptions": [
+                "value::all"
+              ],
+              "includeAll": false
+            },
+            "timeContext": {
+              "durationMs": 86400000
+            },
+            "defaultValue": "value::all",
+            "value": [
+              "value::all"
+            ]
+          },
+          {
+            "id": "df4b642d-c495-4126-b3cc-699d239588dc",
+            "version": "KqlParameterItem/1.0",
+            "name": "TimeRange",
+            "label": "Time Range",
+            "type": 4,
+            "isRequired": true,
+            "isGlobal": true,
+            "typeSettings": {
+              "selectableValues": [
+                {
+                  "durationMs": 300000
+                },
+                {
+                  "durationMs": 900000
+                },
+                {
+                  "durationMs": 1800000
+                },
+                {
+                  "durationMs": 3600000
+                },
+                {
+                  "durationMs": 14400000
+                },
+                {
+                  "durationMs": 43200000
+                },
+                {
+                  "durationMs": 86400000
+                },
+                {
+                  "durationMs": 172800000
+                },
+                {
+                  "durationMs": 259200000
+                },
+                {
+                  "durationMs": 604800000
+                },
+                {
+                  "durationMs": 1209600000
+                },
+                {
+                  "durationMs": 2419200000
+                },
+                {
+                  "durationMs": 2592000000
+                },
+                {
+                  "durationMs": 5184000000
+                },
+                {
+                  "durationMs": 7776000000
+                }
+              ],
+              "allowCustom": true
+            },
+            "value": {
+              "durationMs": 864000000,
+              "endTime": "2023-11-10T16:09:00.000Z"
+            }
+          }
+        ],
+        "style": "pills",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "parameters - 0"
+    },
+    {
+      "type": 11,
+      "content": {
+        "version": "LinkItem/1.0",
+        "style": "tabs",
+        "links": [
+          {
+            "id": "c2a2807c-9126-4f10-8e08-a698a943d97d",
+            "cellValue": "selectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "App Service Plans",
+            "subTarget": "appServicePlans",
+            "style": "link"
+          },
+          {
+            "id": "13faddfe-bce1-4635-94e9-7e75dfcf315b",
+            "cellValue": "selectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Virtual Machines",
+            "subTarget": "virtualMachines",
+            "preText": "",
+            "style": "link"
+          },
+          {
+            "id": "afd4f255-6bba-4484-a6d5-6414de0a9d0e",
+            "cellValue": "selectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Disks",
+            "subTarget": "disks",
+            "style": "link"
+          },
+          {
+            "id": "24722cbd-4d62-4bca-8df8-aee96ec19964",
+            "cellValue": "selectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Private Endpoints",
+            "subTarget": "privateEndpoints",
+            "style": "link"
+          },
+          {
+            "id": "ee15ab96-ce3b-43df-a765-abd0f94e03f0",
+            "cellValue": "selectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Network Interfaces",
+            "subTarget": "networkInterfaces",
+            "style": "link"
+          }
+        ]
+      },
+      "name": "links - 3"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 9,
+            "content": {
+              "version": "KqlParameterItem/1.0",
+              "crossComponentResources": [
+                "{Subscription}"
+              ],
+              "parameters": [
+                {
+                  "id": "7c3986d6-6edd-4e71-a0d1-4d1d6dd851d6",
+                  "version": "KqlParameterItem/1.0",
+                  "name": "NICs",
+                  "type": 5,
+                  "isRequired": true,
+                  "isGlobal": true,
+                  "multiSelect": true,
+                  "quote": "'",
+                  "delimiter": ",",
+                  "query": "Resources\r\n| where type =~ 'microsoft.network/networkinterfaces'\r\n| project id",
+                  "crossComponentResources": [
+                    "{Subscription}"
+                  ],
+                  "typeSettings": {
+                    "additionalResourceOptions": [
+                      "value::all"
+                    ],
+                    "showDefault": false
+                  },
+                  "timeContext": {
+                    "durationMs": 86400000
+                  },
+                  "defaultValue": "value::all",
+                  "queryType": 1,
+                  "resourceType": "microsoft.resourcegraph/resources"
+                }
+              ],
+              "style": "pills",
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources"
+            },
+            "name": "parameters - 2"
+          },
+          {
+            "type": 10,
+            "content": {
+              "chartId": "workbookc1c4dccc-1ad0-4310-b62c-ccba72e2f524",
+              "version": "MetricsItem/2.0",
+              "size": 0,
+              "chartType": 0,
+              "resourceType": "microsoft.network/networkinterfaces",
+              "metricScope": 0,
+              "resourceParameter": "NICs",
+              "resourceIds": [
+                "{NICs}"
+              ],
+              "timeContextFromParameter": "TimeRange",
+              "timeContext": {
+                "durationMs": 0
+              },
+              "metrics": [
+                {
+                  "namespace": "microsoft.network/networkinterfaces",
+                  "metric": "microsoft.network/networkinterfaces--BytesReceivedRate",
+                  "aggregation": 1
+                },
+                {
+                  "namespace": "microsoft.network/networkinterfaces",
+                  "metric": "microsoft.network/networkinterfaces--BytesSentRate",
+                  "aggregation": 1
+                }
+              ],
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "Subscription",
+                    "formatter": 15,
+                    "formatOptions": {
+                      "linkTarget": null,
+                      "showIcon": true
+                    }
+                  },
+                  {
+                    "columnMatch": "Name",
+                    "formatter": 13,
+                    "formatOptions": {
+                      "linkTarget": "Resource",
+                      "showIcon": true
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.network/networkinterfaces--BytesReceivedRate",
+                    "formatter": 4,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    },
+                    "numberFormat": {
+                      "unit": 2,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.network/networkinterfaces--BytesReceivedRate Timeline",
+                    "formatter": 21,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.network/networkinterfaces--BytesSentRate",
+                    "formatter": 4,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    },
+                    "numberFormat": {
+                      "unit": 2,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.network/networkinterfaces--BytesSentRate Timeline",
+                    "formatter": 21,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    }
+                  }
+                ],
+                "rowLimit": 10000,
+                "labelSettings": [
+                  {
+                    "columnId": "microsoft.network/networkinterfaces--BytesReceivedRate",
+                    "label": "Bytes Received (Sum)"
+                  },
+                  {
+                    "columnId": "microsoft.network/networkinterfaces--BytesReceivedRate Timeline",
+                    "label": "Bytes Received Timeline"
+                  },
+                  {
+                    "columnId": "microsoft.network/networkinterfaces--BytesSentRate",
+                    "label": "Bytes Sent (Sum)"
+                  },
+                  {
+                    "columnId": "microsoft.network/networkinterfaces--BytesSentRate Timeline",
+                    "label": "Bytes Sent Timeline"
+                  }
+                ]
+              },
+              "sortBy": [],
+              "showExportToExcel": true
+            },
+            "name": "metric - 1"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "networkInterfaces"
+      },
+      "name": "NetworkInterfaces",
+      "styleSettings": {
+        "showBorder": true
+      }
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 9,
+            "content": {
+              "version": "KqlParameterItem/1.0",
+              "crossComponentResources": [
+                "{Subscription}"
+              ],
+              "parameters": [
+                {
+                  "id": "2dc0c0a5-1b5c-4a7e-858b-481b0fbd5f9f",
+                  "version": "KqlParameterItem/1.0",
+                  "name": "PrivateEndpoint",
+                  "label": "Private Endpoint",
+                  "type": 5,
+                  "isRequired": true,
+                  "multiSelect": true,
+                  "quote": "'",
+                  "delimiter": ",",
+                  "query": "resources\r\n| where type =~ \"microsoft.network/privateEndpoints\" and isnotnull(properties)\r\n| project id",
+                  "crossComponentResources": [
+                    "{Subscription}"
+                  ],
+                  "typeSettings": {
+                    "resourceTypeFilter": {
+                      "microsoft.network/privateendpoints": true
+                    },
+                    "additionalResourceOptions": [
+                      "value::all"
+                    ]
+                  },
+                  "timeContext": {
+                    "durationMs": 86400000
+                  },
+                  "defaultValue": "value::all",
+                  "queryType": 1,
+                  "resourceType": "microsoft.resourcegraph/resources"
+                }
+              ],
+              "style": "pills",
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources"
+            },
+            "name": "parameters - 3"
+          },
+          {
+            "type": 10,
+            "content": {
+              "chartId": "workbookdaf33632-c962-4632-b528-51f7f1cb3370",
+              "version": "MetricsItem/2.0",
+              "size": 0,
+              "chartType": 0,
+              "resourceType": "microsoft.network/privateendpoints",
+              "metricScope": 0,
+              "resourceParameter": "PrivateEndpoint",
+              "resourceIds": [
+                "{PrivateEndpoint}"
+              ],
+              "timeContextFromParameter": "TimeRange",
+              "timeContext": {
+                "durationMs": 0
+              },
+              "metrics": [
+                {
+                  "namespace": "microsoft.network/privateendpoints",
+                  "metric": "microsoft.network/privateendpoints--PEBytesIn",
+                  "aggregation": 1
+                },
+                {
+                  "namespace": "microsoft.network/privateendpoints",
+                  "metric": "microsoft.network/privateendpoints--PEBytesOut",
+                  "aggregation": 1
+                }
+              ],
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "Subscription",
+                    "formatter": 15,
+                    "formatOptions": {
+                      "linkTarget": null,
+                      "showIcon": true
+                    }
+                  },
+                  {
+                    "columnMatch": "Name",
+                    "formatter": 13,
+                    "formatOptions": {
+                      "linkTarget": "Resource",
+                      "showIcon": true
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.network/privateendpoints--PEBytesIn",
+                    "formatter": 4,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    },
+                    "numberFormat": {
+                      "unit": 0,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.network/privateendpoints--PEBytesIn Timeline",
+                    "formatter": 21,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.network/privateendpoints--PEBytesOut",
+                    "formatter": 4,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    },
+                    "numberFormat": {
+                      "unit": 0,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.network/privateendpoints--PEBytesOut Timeline",
+                    "formatter": 21,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    }
+                  }
+                ],
+                "rowLimit": 10000,
+                "sortBy": [
+                  {
+                    "itemKey": "$gen_bar_microsoft.network/privateendpoints--PEBytesIn_2",
+                    "sortOrder": 2
+                  }
+                ],
+                "labelSettings": [
+                  {
+                    "columnId": "microsoft.network/privateendpoints--PEBytesIn",
+                    "label": "Bytes In (Sum)"
+                  },
+                  {
+                    "columnId": "microsoft.network/privateendpoints--PEBytesIn Timeline",
+                    "label": "Bytes In Timeline"
+                  },
+                  {
+                    "columnId": "microsoft.network/privateendpoints--PEBytesOut",
+                    "label": "Bytes Out (Sum)"
+                  },
+                  {
+                    "columnId": "microsoft.network/privateendpoints--PEBytesOut Timeline",
+                    "label": "Bytes Out Timeline"
+                  }
+                ]
+              },
+              "sortBy": [
+                {
+                  "itemKey": "$gen_bar_microsoft.network/privateendpoints--PEBytesIn_2",
+                  "sortOrder": 2
+                }
+              ]
+            },
+            "name": "metric - 4"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "privateEndpoints"
+      },
+      "name": "PrivateEndpoints",
+      "styleSettings": {
+        "showBorder": true
+      }
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 9,
+            "content": {
+              "version": "KqlParameterItem/1.0",
+              "crossComponentResources": [
+                "{Subscription}"
+              ],
+              "parameters": [
+                {
+                  "id": "146acc99-cb4d-4ec2-9076-581e6b617638",
+                  "version": "KqlParameterItem/1.0",
+                  "name": "VirtualMachines",
+                  "label": "Virtual Machines",
+                  "type": 5,
+                  "isRequired": true,
+                  "multiSelect": true,
+                  "quote": "'",
+                  "delimiter": ",",
+                  "query": "resources\r\n| where (type =~ \"microsoft.hybridcompute/machines\" and kind =~ \"AVS\") or type =~ \"microsoft.compute/virtualmachines\"\r\n| project id",
+                  "crossComponentResources": [
+                    "{Subscription}"
+                  ],
+                  "typeSettings": {
+                    "additionalResourceOptions": [
+                      "value::all"
+                    ]
+                  },
+                  "timeContext": {
+                    "durationMs": 86400000
+                  },
+                  "defaultValue": "value::all",
+                  "queryType": 1,
+                  "resourceType": "microsoft.resourcegraph/resources"
+                }
+              ],
+              "style": "pills",
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources"
+            },
+            "name": "parameters - 0"
+          },
+          {
+            "type": 10,
+            "content": {
+              "chartId": "workbookdb19a8d8-91af-44ea-951d-5ffa133b2ebe",
+              "version": "MetricsItem/2.0",
+              "size": 0,
+              "chartType": 0,
+              "resourceType": "microsoft.compute/virtualmachines",
+              "metricScope": 0,
+              "resourceParameter": "VirtualMachines",
+              "resourceIds": [
+                "{VirtualMachines}"
+              ],
+              "timeContextFromParameter": "TimeRange",
+              "timeContext": {
+                "durationMs": 0
+              },
+              "metrics": [
+                {
+                  "namespace": "microsoft.compute/virtualmachines",
+                  "metric": "microsoft.compute/virtualmachines--Percentage CPU",
+                  "aggregation": 4
+                },
+                {
+                  "namespace": "microsoft.compute/virtualmachines",
+                  "metric": "microsoft.compute/virtualmachines--Disk Read Bytes",
+                  "aggregation": 1
+                },
+                {
+                  "namespace": "microsoft.compute/virtualmachines",
+                  "metric": "microsoft.compute/virtualmachines--Disk Write Bytes",
+                  "aggregation": 1
+                },
+                {
+                  "namespace": "microsoft.compute/virtualmachines",
+                  "metric": "microsoft.compute/virtualmachines--Network In Total",
+                  "aggregation": 1
+                },
+                {
+                  "namespace": "microsoft.compute/virtualmachines",
+                  "metric": "microsoft.compute/virtualmachines--Network Out Total",
+                  "aggregation": 1
+                }
+              ],
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "Subscription",
+                    "formatter": 15,
+                    "formatOptions": {
+                      "linkTarget": null,
+                      "showIcon": true
+                    }
+                  },
+                  {
+                    "columnMatch": "Name",
+                    "formatter": 13,
+                    "formatOptions": {
+                      "linkTarget": "Resource",
+                      "showIcon": true
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.compute/virtualmachines--Percentage CPU",
+                    "formatter": 8,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue",
+                      "linkTarget": "WorkbookTemplate",
+                      "linkIsContextBlade": true,
+                      "workbookContext": {
+                        "componentIdSource": "column",
+                        "componentId": "Name",
+                        "resourceIdsSource": "column",
+                        "resourceIds": "Name",
+                        "templateIdSource": "static",
+                        "templateId": "Community-Workbooks/Virtual Machines/Virtual machine details",
+                        "typeSource": "static",
+                        "type": "workbook",
+                        "gallerySource": "static",
+                        "gallery": "microsoft.compute/virtualmachines"
+                      }
+                    },
+                    "numberFormat": {
+                      "unit": 1,
+                      "options": {
+                        "style": "decimal",
+                        "maximumFractionDigits": 1
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.compute/virtualmachines--Percentage CPU Timeline",
+                    "formatter": 21,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.compute/virtualmachines--Disk Read Bytes|microsoft.compute/virtualmachines--Disk Write Bytes",
+                    "formatter": 8,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "yellow"
+                    },
+                    "numberFormat": {
+                      "unit": 2,
+                      "options": {
+                        "style": "decimal",
+                        "maximumFractionDigits": 1
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.compute/virtualmachines--Disk Read Bytes Timeline",
+                    "formatter": 5
+                  },
+                  {
+                    "columnMatch": "microsoft.compute/virtualmachines--Disk Write Bytes Timeline",
+                    "formatter": 5
+                  },
+                  {
+                    "columnMatch": "microsoft.compute/virtualmachines--Network In Total|microsoft.compute/virtualmachines--Network Out Total",
+                    "formatter": 8,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "orange"
+                    },
+                    "numberFormat": {
+                      "unit": 2,
+                      "options": {
+                        "style": "decimal",
+                        "maximumFractionDigits": 1
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.compute/virtualmachines--Network In Total Timeline",
+                    "formatter": 5
+                  },
+                  {
+                    "columnMatch": "microsoft.compute/virtualmachines--Network Out Total Timeline",
+                    "formatter": 5
+                  }
+                ],
+                "rowLimit": 10000,
+                "filter": true,
+                "sortBy": [
+                  {
+                    "itemKey": "$gen_link_Subscription_0",
+                    "sortOrder": 1
+                  }
+                ],
+                "labelSettings": [
+                  {
+                    "columnId": "microsoft.compute/virtualmachines--Percentage CPU",
+                    "label": "Percentage CPU (Average)"
+                  },
+                  {
+                    "columnId": "microsoft.compute/virtualmachines--Percentage CPU Timeline",
+                    "label": "Percentage CPU Timeline"
+                  },
+                  {
+                    "columnId": "microsoft.compute/virtualmachines--Disk Read Bytes",
+                    "label": "Disk Read Bytes (Sum)"
+                  },
+                  {
+                    "columnId": "microsoft.compute/virtualmachines--Disk Read Bytes Timeline",
+                    "label": "Disk Read Bytes Timeline"
+                  },
+                  {
+                    "columnId": "microsoft.compute/virtualmachines--Disk Write Bytes",
+                    "label": "Disk Write Bytes (Sum)"
+                  },
+                  {
+                    "columnId": "microsoft.compute/virtualmachines--Disk Write Bytes Timeline",
+                    "label": "Disk Write Bytes Timeline"
+                  },
+                  {
+                    "columnId": "microsoft.compute/virtualmachines--Network In Total",
+                    "label": "Network In Total (Sum)"
+                  },
+                  {
+                    "columnId": "microsoft.compute/virtualmachines--Network In Total Timeline",
+                    "label": "Network In Total Timeline"
+                  },
+                  {
+                    "columnId": "microsoft.compute/virtualmachines--Network Out Total",
+                    "label": "Network Out Total (Sum)"
+                  },
+                  {
+                    "columnId": "microsoft.compute/virtualmachines--Network Out Total Timeline",
+                    "label": "Network Out Total Timeline"
+                  }
+                ]
+              },
+              "sortBy": [
+                {
+                  "itemKey": "$gen_link_Subscription_0",
+                  "sortOrder": 1
+                }
+              ],
+              "showExportToExcel": true
+            },
+            "showPin": true,
+            "name": "Azure Monitor VM Key Metrics"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "virtualMachines"
+      },
+      "name": "virtualMachines",
+      "styleSettings": {
+        "showBorder": true
+      }
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 9,
+            "content": {
+              "version": "KqlParameterItem/1.0",
+              "crossComponentResources": [
+                "{Subscription}"
+              ],
+              "parameters": [
+                {
+                  "id": "47edd126-974a-43b2-96e2-60ba1f43a7e4",
+                  "version": "KqlParameterItem/1.0",
+                  "name": "AppServicePlan",
+                  "label": "App Service Plan",
+                  "type": 5,
+                  "isRequired": true,
+                  "multiSelect": true,
+                  "quote": "'",
+                  "delimiter": ",",
+                  "query": "resources\r\n| where type == 'microsoft.web/serverfarms'\r\n| project id",
+                  "crossComponentResources": [
+                    "{Subscription}"
+                  ],
+                  "typeSettings": {
+                    "additionalResourceOptions": [
+                      "value::all"
+                    ]
+                  },
+                  "timeContext": {
+                    "durationMs": 86400000
+                  },
+                  "defaultValue": "value::all",
+                  "queryType": 1,
+                  "resourceType": "microsoft.resourcegraph/resources"
+                }
+              ],
+              "style": "pills",
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources"
+            },
+            "name": "parameters - 0"
+          },
+          {
+            "type": 10,
+            "content": {
+              "chartId": "workbooke36fd20b-ad99-4e02-8706-def2698a838e",
+              "version": "MetricsItem/2.0",
+              "size": 0,
+              "chartType": 0,
+              "resourceType": "microsoft.web/serverfarms",
+              "metricScope": 0,
+              "resourceParameter": "AppServicePlan",
+              "resourceIds": [
+                "{AppServicePlan}"
+              ],
+              "timeContextFromParameter": "TimeRange",
+              "timeContext": {
+                "durationMs": 0
+              },
+              "metrics": [
+                {
+                  "namespace": "microsoft.web/serverfarms",
+                  "metric": "microsoft.web/serverfarms--CpuPercentage",
+                  "aggregation": 4
+                },
+                {
+                  "namespace": "microsoft.web/serverfarms",
+                  "metric": "microsoft.web/serverfarms--SocketInboundAll",
+                  "aggregation": 4
+                }
+              ],
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "Subscription",
+                    "formatter": 15,
+                    "formatOptions": {
+                      "linkTarget": null,
+                      "showIcon": true
+                    }
+                  },
+                  {
+                    "columnMatch": "Name",
+                    "formatter": 13,
+                    "formatOptions": {
+                      "linkTarget": "Resource",
+                      "showIcon": true
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.web/serverfarms--CpuPercentage",
+                    "formatter": 4,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    },
+                    "numberFormat": {
+                      "unit": 1,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.web/serverfarms--CpuPercentage Timeline",
+                    "formatter": 21,
+                    "formatOptions": {
+                      "palette": "blue"
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.web/serverfarms--SocketInboundAll",
+                    "formatter": 4,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    },
+                    "numberFormat": {
+                      "unit": 0,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.web/serverfarms--SocketInboundAll Timeline",
+                    "formatter": 21,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    }
+                  }
+                ],
+                "rowLimit": 10000,
+                "sortBy": [
+                  {
+                    "itemKey": "$gen_bar_microsoft.web/serverfarms--CpuPercentage_2",
+                    "sortOrder": 2
+                  }
+                ],
+                "labelSettings": [
+                  {
+                    "columnId": "microsoft.web/serverfarms--CpuPercentage",
+                    "label": "CPU Percentage (Average)"
+                  },
+                  {
+                    "columnId": "microsoft.web/serverfarms--CpuPercentage Timeline",
+                    "label": "CPU Percentage Timeline"
+                  },
+                  {
+                    "columnId": "microsoft.web/serverfarms--SocketInboundAll",
+                    "label": "Socket Count for Inbound Requests (Average)"
+                  },
+                  {
+                    "columnId": "microsoft.web/serverfarms--SocketInboundAll Timeline",
+                    "label": "Socket Count for Inbound Requests Timeline"
+                  }
+                ]
+              },
+              "sortBy": [
+                {
+                  "itemKey": "$gen_bar_microsoft.web/serverfarms--CpuPercentage_2",
+                  "sortOrder": 2
+                }
+              ]
+            },
+            "name": "metric - 1"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "appServicePlans"
+      },
+      "name": "AppServicePlans",
+      "styleSettings": {
+        "showBorder": true
+      }
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 9,
+            "content": {
+              "version": "KqlParameterItem/1.0",
+              "crossComponentResources": [
+                "{Subscription}"
+              ],
+              "parameters": [
+                {
+                  "id": "18955768-d615-490c-8302-d21da838dd67",
+                  "version": "KqlParameterItem/1.0",
+                  "name": "Disks",
+                  "type": 5,
+                  "isRequired": true,
+                  "multiSelect": true,
+                  "quote": "'",
+                  "delimiter": ",",
+                  "query": "resources\r\n| where type =~ 'microsoft.compute/disks'\r\n| project id",
+                  "crossComponentResources": [
+                    "{Subscription}"
+                  ],
+                  "typeSettings": {
+                    "additionalResourceOptions": [
+                      "value::all"
+                    ]
+                  },
+                  "timeContext": {
+                    "durationMs": 86400000
+                  },
+                  "defaultValue": "value::all",
+                  "queryType": 1,
+                  "resourceType": "microsoft.resourcegraph/resources"
+                }
+              ],
+              "style": "pills",
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources"
+            },
+            "name": "parameters - 0"
+          },
+          {
+            "type": 10,
+            "content": {
+              "chartId": "workbookdbe53eb2-8cba-4899-8aee-480dcb446940",
+              "version": "MetricsItem/2.0",
+              "size": 0,
+              "chartType": 0,
+              "resourceType": "microsoft.compute/disks",
+              "metricScope": 0,
+              "resourceParameter": "Disks",
+              "resourceIds": [
+                "{Disks}"
+              ],
+              "timeContextFromParameter": "TimeRange",
+              "timeContext": {
+                "durationMs": 0
+              },
+              "metrics": [
+                {
+                  "namespace": "microsoft.compute/disks",
+                  "metric": "microsoft.compute/disks-Disk Performance-Composite Disk Write Bytes/sec",
+                  "aggregation": 4
+                },
+                {
+                  "namespace": "microsoft.compute/disks",
+                  "metric": "microsoft.compute/disks-Disk Performance-Composite Disk Read Bytes/sec",
+                  "aggregation": 4
+                }
+              ],
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "Subscription",
+                    "formatter": 15,
+                    "formatOptions": {
+                      "linkTarget": null,
+                      "showIcon": true
+                    }
+                  },
+                  {
+                    "columnMatch": "Name",
+                    "formatter": 13,
+                    "formatOptions": {
+                      "linkTarget": "Resource",
+                      "showIcon": true
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.compute/disks-Disk Performance-Composite Disk Write Bytes/sec",
+                    "formatter": 4,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    },
+                    "numberFormat": {
+                      "unit": 11,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.compute/disks-Disk Performance-Composite Disk Write Bytes/sec Timeline",
+                    "formatter": 21,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.compute/disks-Disk Performance-Composite Disk Read Bytes/sec",
+                    "formatter": 4,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    },
+                    "numberFormat": {
+                      "unit": 11,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.compute/disks-Disk Performance-Composite Disk Read Bytes/sec Timeline",
+                    "formatter": 21,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    }
+                  }
+                ],
+                "rowLimit": 10000,
+                "labelSettings": [
+                  {
+                    "columnId": "microsoft.compute/disks-Disk Performance-Composite Disk Write Bytes/sec",
+                    "label": "Disk Write Bytes/sec(Preview) (Average)"
+                  },
+                  {
+                    "columnId": "microsoft.compute/disks-Disk Performance-Composite Disk Write Bytes/sec Timeline",
+                    "label": "Disk Write Bytes/sec(Preview) Timeline"
+                  },
+                  {
+                    "columnId": "microsoft.compute/disks-Disk Performance-Composite Disk Read Bytes/sec",
+                    "label": "Disk Read Bytes/sec(Preview) (Average)"
+                  },
+                  {
+                    "columnId": "microsoft.compute/disks-Disk Performance-Composite Disk Read Bytes/sec Timeline",
+                    "label": "Disk Read Bytes/sec(Preview) Timeline"
+                  }
+                ]
+              }
+            },
+            "name": "metric - 1"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "disks"
+      },
+      "name": "disks",
+      "styleSettings": {
+        "showBorder": true
+      }
+    }
+  ],
+  "fallbackResourceIds": [
+    "Azure Monitor"
+  ],
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}
