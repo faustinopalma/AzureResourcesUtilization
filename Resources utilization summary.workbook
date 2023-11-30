@@ -5,6 +5,9 @@
       "type": 9,
       "content": {
         "version": "KqlParameterItem/1.0",
+        "crossComponentResources": [
+          "{Subscription}"
+        ],
         "parameters": [
           {
             "id": "3cb02ae4-2a73-4290-b672-1c7765224ecb",
@@ -89,16 +92,93 @@
               "allowCustom": true
             },
             "value": {
-              "durationMs": 864000000,
-              "endTime": "2023-11-10T16:09:00.000Z"
+              "durationMs": 2592000000
             }
+          },
+          {
+            "id": "498bec00-8a46-455a-854f-4984080baaf8",
+            "version": "KqlParameterItem/1.0",
+            "name": "Workspaces",
+            "type": 5,
+            "isRequired": true,
+            "multiSelect": true,
+            "quote": "'",
+            "delimiter": ",",
+            "query": "resources\r\n| where type =~ \"microsoft.operationalinsights/workspaces\"\r\n| project id",
+            "crossComponentResources": [
+              "{Subscription}"
+            ],
+            "typeSettings": {
+              "additionalResourceOptions": [
+                "value::all"
+              ],
+              "showDefault": false
+            },
+            "defaultValue": "value::all",
+            "queryType": 1,
+            "resourceType": "microsoft.resourcegraph/resources"
           }
         ],
         "style": "pills",
-        "queryType": 0,
-        "resourceType": "microsoft.operationalinsights/workspaces"
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources"
       },
       "name": "parameters - 0"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "resources\r\n| summarize Count=count() by type\r\n| sort by Count desc",
+              "size": 0,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscription}"
+              ],
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "type",
+                    "formatter": 16,
+                    "formatOptions": {
+                      "linkTarget": "OpenBlade",
+                      "showIcon": true,
+                      "bladeOpenContext": {
+                        "bladeName": "BrowseResource",
+                        "extensionName": "HubsExtension",
+                        "bladeParameters": [
+                          {
+                            "name": "resourceType",
+                            "source": "column",
+                            "value": "type"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "Count",
+                    "formatter": 4,
+                    "formatOptions": {
+                      "palette": "blue"
+                    }
+                  }
+                ]
+              }
+            },
+            "name": "query - 0"
+          }
+        ]
+      },
+      "name": "group - 8"
     },
     {
       "type": 11,
@@ -145,6 +225,14 @@
             "linkTarget": "parameter",
             "linkLabel": "Network Interfaces",
             "subTarget": "networkInterfaces",
+            "style": "link"
+          },
+          {
+            "id": "9c8ba589-8c88-43fd-b906-a952a41fabbc",
+            "cellValue": "selectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Private DNS Zones",
+            "subTarget": "privateDNSzones",
             "style": "link"
           }
         ]
@@ -197,6 +285,11 @@
               "queryType": 1,
               "resourceType": "microsoft.resourcegraph/resources"
             },
+            "conditionalVisibility": {
+              "parameterName": "isvisible",
+              "comparison": "isEqualTo",
+              "value": "yes"
+            },
             "name": "parameters - 2"
           },
           {
@@ -214,7 +307,7 @@
               ],
               "timeContextFromParameter": "TimeRange",
               "timeContext": {
-                "durationMs": 0
+                "durationMs": 2592000000
               },
               "metrics": [
                 {
@@ -376,6 +469,11 @@
               "queryType": 1,
               "resourceType": "microsoft.resourcegraph/resources"
             },
+            "conditionalVisibility": {
+              "parameterName": "isvisible",
+              "comparison": "isEqualTo",
+              "value": "yes"
+            },
             "name": "parameters - 3"
           },
           {
@@ -393,7 +491,7 @@
               ],
               "timeContextFromParameter": "TimeRange",
               "timeContext": {
-                "durationMs": 0
+                "durationMs": 2592000000
               },
               "metrics": [
                 {
@@ -501,7 +599,8 @@
                   "itemKey": "$gen_bar_microsoft.network/privateendpoints--PEBytesIn_2",
                   "sortOrder": 2
                 }
-              ]
+              ],
+              "showExportToExcel": true
             },
             "name": "metric - 4"
           }
@@ -562,6 +661,11 @@
               "queryType": 1,
               "resourceType": "microsoft.resourcegraph/resources"
             },
+            "conditionalVisibility": {
+              "parameterName": "isvisible",
+              "comparison": "isEqualTo",
+              "value": "yes"
+            },
             "name": "parameters - 0"
           },
           {
@@ -579,7 +683,7 @@
               ],
               "timeContextFromParameter": "TimeRange",
               "timeContext": {
-                "durationMs": 0
+                "durationMs": 2592000000
               },
               "metrics": [
                 {
@@ -769,7 +873,7 @@
               ],
               "showExportToExcel": true
             },
-            "showPin": true,
+            "showPin": false,
             "name": "Azure Monitor VM Key Metrics"
           }
         ]
@@ -822,12 +926,20 @@
                   },
                   "defaultValue": "value::all",
                   "queryType": 1,
-                  "resourceType": "microsoft.resourcegraph/resources"
+                  "resourceType": "microsoft.resourcegraph/resources",
+                  "value": [
+                    "value::all"
+                  ]
                 }
               ],
               "style": "pills",
               "queryType": 1,
               "resourceType": "microsoft.resourcegraph/resources"
+            },
+            "conditionalVisibility": {
+              "parameterName": "isvisible",
+              "comparison": "isEqualTo",
+              "value": "yes"
             },
             "name": "parameters - 0"
           },
@@ -846,7 +958,7 @@
               ],
               "timeContextFromParameter": "TimeRange",
               "timeContext": {
-                "durationMs": 0
+                "durationMs": 2592000000
               },
               "metrics": [
                 {
@@ -953,7 +1065,8 @@
                   "itemKey": "$gen_bar_microsoft.web/serverfarms--CpuPercentage_2",
                   "sortOrder": 2
                 }
-              ]
+              ],
+              "showExportToExcel": true
             },
             "name": "metric - 1"
           }
@@ -1013,6 +1126,11 @@
               "queryType": 1,
               "resourceType": "microsoft.resourcegraph/resources"
             },
+            "conditionalVisibility": {
+              "parameterName": "isvisible",
+              "comparison": "isEqualTo",
+              "value": "yes"
+            },
             "name": "parameters - 0"
           },
           {
@@ -1030,7 +1148,7 @@
               ],
               "timeContextFromParameter": "TimeRange",
               "timeContext": {
-                "durationMs": 0
+                "durationMs": 2592000000
               },
               "metrics": [
                 {
@@ -1138,6 +1256,153 @@
         "value": "disks"
       },
       "name": "disks",
+      "styleSettings": {
+        "showBorder": true
+      }
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 9,
+            "content": {
+              "version": "KqlParameterItem/1.0",
+              "crossComponentResources": [
+                "{Subscription}"
+              ],
+              "parameters": [
+                {
+                  "id": "138ef486-4163-4d79-bd7b-9ee0c3e5e549",
+                  "version": "KqlParameterItem/1.0",
+                  "name": "privateZones",
+                  "label": "Private DNS Zones",
+                  "type": 5,
+                  "isRequired": true,
+                  "multiSelect": true,
+                  "quote": "'",
+                  "delimiter": ",",
+                  "query": "resources\r\n| where type =~ \"microsoft.network/privatednszones\"\r\n| project id",
+                  "crossComponentResources": [
+                    "{Subscription}"
+                  ],
+                  "typeSettings": {
+                    "additionalResourceOptions": [
+                      "value::all"
+                    ],
+                    "showDefault": false
+                  },
+                  "timeContext": {
+                    "durationMs": 86400000
+                  },
+                  "defaultValue": "value::all",
+                  "queryType": 1,
+                  "resourceType": "microsoft.resourcegraph/resources"
+                }
+              ],
+              "style": "pills",
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources"
+            },
+            "conditionalVisibility": {
+              "parameterName": "isvisible",
+              "comparison": "isEqualTo",
+              "value": "yes"
+            },
+            "name": "parameters - 0"
+          },
+          {
+            "type": 10,
+            "content": {
+              "chartId": "workbook93281b9a-47e1-4db2-809c-9406ac6a07a4",
+              "version": "MetricsItem/2.0",
+              "size": 0,
+              "chartType": 0,
+              "resourceType": "microsoft.network/privatednszones",
+              "metricScope": 0,
+              "resourceParameter": "privateZones",
+              "resourceIds": [
+                "{privateZones}"
+              ],
+              "timeContextFromParameter": "TimeRange",
+              "timeContext": {
+                "durationMs": 2592000000
+              },
+              "metrics": [
+                {
+                  "namespace": "microsoft.network/privatednszones",
+                  "metric": "microsoft.network/privatednszones--QueryVolume",
+                  "aggregation": 1
+                }
+              ],
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "Subscription",
+                    "formatter": 15,
+                    "formatOptions": {
+                      "linkTarget": null,
+                      "showIcon": true
+                    }
+                  },
+                  {
+                    "columnMatch": "Name",
+                    "formatter": 13,
+                    "formatOptions": {
+                      "linkTarget": "Resource",
+                      "showIcon": true
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.network/privatednszones--QueryVolume",
+                    "formatter": 4,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    },
+                    "numberFormat": {
+                      "unit": 2,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.network/privatednszones--QueryVolume Timeline",
+                    "formatter": 21,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    }
+                  }
+                ],
+                "rowLimit": 10000,
+                "labelSettings": [
+                  {
+                    "columnId": "microsoft.network/privatednszones--QueryVolume",
+                    "label": "Query Volume (Sum)"
+                  },
+                  {
+                    "columnId": "microsoft.network/privatednszones--QueryVolume Timeline",
+                    "label": "Query Volume Timeline"
+                  }
+                ]
+              },
+              "sortBy": [],
+              "showExportToExcel": true
+            },
+            "name": "metric - 1"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "privateDNSzones"
+      },
+      "name": "group - 7",
       "styleSettings": {
         "showBorder": true
       }
