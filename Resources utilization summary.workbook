@@ -195,6 +195,14 @@
             "linkLabel": "Key Vaults",
             "subTarget": "keyVaults",
             "style": "link"
+          },
+          {
+            "id": "ffcdd4e3-8632-4b43-acd6-f62207858b38",
+            "cellValue": "selectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "SQL Databases",
+            "subTarget": "sqlDatabases",
+            "style": "link"
           }
         ]
       },
@@ -378,160 +386,6 @@
         "value": "networkInterfaces"
       },
       "name": "NetworkInterfaces",
-      "styleSettings": {
-        "showBorder": true
-      }
-    },
-    {
-      "type": 12,
-      "content": {
-        "version": "NotebookGroup/1.0",
-        "groupType": "editable",
-        "items": [
-          {
-            "type": 9,
-            "content": {
-              "version": "KqlParameterItem/1.0",
-              "crossComponentResources": [
-                "{Subscription}"
-              ],
-              "parameters": [
-                {
-                  "id": "7c3986d6-6edd-4e71-a0d1-4d1d6dd851d6",
-                  "version": "KqlParameterItem/1.0",
-                  "name": "keyVaults",
-                  "label": "Key Vaults",
-                  "type": 5,
-                  "isRequired": true,
-                  "isGlobal": true,
-                  "multiSelect": true,
-                  "quote": "'",
-                  "delimiter": ",",
-                  "query": "Resources\r\n| where type =~ 'Microsoft.KeyVault/vaults'\r\n| project id",
-                  "crossComponentResources": [
-                    "{Subscription}"
-                  ],
-                  "typeSettings": {
-                    "additionalResourceOptions": [
-                      "value::all"
-                    ],
-                    "showDefault": false
-                  },
-                  "timeContext": {
-                    "durationMs": 86400000
-                  },
-                  "defaultValue": "value::all",
-                  "queryType": 1,
-                  "resourceType": "microsoft.resourcegraph/resources"
-                }
-              ],
-              "style": "pills",
-              "queryType": 1,
-              "resourceType": "microsoft.resourcegraph/resources"
-            },
-            "conditionalVisibility": {
-              "parameterName": "isvisible",
-              "comparison": "isEqualTo",
-              "value": "yes"
-            },
-            "name": "parameters - 2"
-          },
-          {
-            "type": 10,
-            "content": {
-              "chartId": "workbook21e7a324-eddd-474d-9100-5b1cba2d594f",
-              "version": "MetricsItem/2.0",
-              "size": 0,
-              "chartType": 0,
-              "resourceType": "microsoft.keyvault/vaults",
-              "metricScope": 0,
-              "resourceParameter": "keyVaults",
-              "resourceIds": [
-                "{keyVaults}"
-              ],
-              "timeContextFromParameter": "TimeRange",
-              "timeContext": {
-                "durationMs": 2592000000
-              },
-              "metrics": [
-                {
-                  "namespace": "microsoft.keyvault/vaults",
-                  "metric": "microsoft.keyvault/vaults--ServiceApiResult",
-                  "aggregation": 7
-                }
-              ],
-              "gridSettings": {
-                "formatters": [
-                  {
-                    "columnMatch": "Subscription",
-                    "formatter": 5
-                  },
-                  {
-                    "columnMatch": "Name",
-                    "formatter": 13,
-                    "formatOptions": {
-                      "linkTarget": "Resource",
-                      "showIcon": true
-                    }
-                  },
-                  {
-                    "columnMatch": "microsoft.keyvault/vaults--ServiceApiResult",
-                    "formatter": 4,
-                    "formatOptions": {
-                      "min": 0,
-                      "palette": "blue"
-                    },
-                    "numberFormat": {
-                      "unit": 0,
-                      "options": {
-                        "style": "decimal"
-                      }
-                    }
-                  },
-                  {
-                    "columnMatch": "microsoft.keyvault/vaults--ServiceApiResult Timeline",
-                    "formatter": 21,
-                    "formatOptions": {
-                      "min": 0,
-                      "palette": "blue"
-                    }
-                  }
-                ],
-                "rowLimit": 10000,
-                "sortBy": [
-                  {
-                    "itemKey": "$gen_bar_microsoft.keyvault/vaults--ServiceApiResult_2",
-                    "sortOrder": 2
-                  }
-                ],
-                "labelSettings": [
-                  {
-                    "columnId": "microsoft.keyvault/vaults--ServiceApiResult",
-                    "label": "Total Service Api Results (Count)"
-                  },
-                  {
-                    "columnId": "microsoft.keyvault/vaults--ServiceApiResult Timeline",
-                    "label": "Total Service Api Results Timeline"
-                  }
-                ]
-              },
-              "sortBy": [
-                {
-                  "itemKey": "$gen_bar_microsoft.keyvault/vaults--ServiceApiResult_2",
-                  "sortOrder": 2
-                }
-              ]
-            },
-            "name": "metric - 1"
-          }
-        ]
-      },
-      "conditionalVisibility": {
-        "parameterName": "selectedTab",
-        "comparison": "isEqualTo",
-        "value": "keyVaults"
-      },
-      "name": "NetworkInterfaces - Copy",
       "styleSettings": {
         "showBorder": true
       }
@@ -1443,7 +1297,7 @@
               ],
               "timeContextFromParameter": "TimeRange",
               "timeContext": {
-                "durationMs": 0
+                "durationMs": 2592000000
               },
               "metrics": [
                 {
@@ -1584,7 +1438,7 @@
               ],
               "timeContextFromParameter": "TimeRange",
               "timeContext": {
-                "durationMs": 0
+                "durationMs": 2592000000
               },
               "metrics": [
                 {
@@ -1647,6 +1501,317 @@
         "value": "storageAccounts"
       },
       "name": "storageAccounts",
+      "styleSettings": {
+        "showBorder": true
+      }
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 9,
+            "content": {
+              "version": "KqlParameterItem/1.0",
+              "crossComponentResources": [
+                "{Subscription}"
+              ],
+              "parameters": [
+                {
+                  "id": "7c3986d6-6edd-4e71-a0d1-4d1d6dd851d6",
+                  "version": "KqlParameterItem/1.0",
+                  "name": "keyVaults",
+                  "label": "Key Vaults",
+                  "type": 5,
+                  "isRequired": true,
+                  "isGlobal": true,
+                  "multiSelect": true,
+                  "quote": "'",
+                  "delimiter": ",",
+                  "query": "Resources\r\n| where type =~ 'Microsoft.KeyVault/vaults'\r\n| project id",
+                  "crossComponentResources": [
+                    "{Subscription}"
+                  ],
+                  "typeSettings": {
+                    "additionalResourceOptions": [
+                      "value::all"
+                    ],
+                    "showDefault": false
+                  },
+                  "timeContext": {
+                    "durationMs": 86400000
+                  },
+                  "defaultValue": "value::all",
+                  "queryType": 1,
+                  "resourceType": "microsoft.resourcegraph/resources"
+                }
+              ],
+              "style": "pills",
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources"
+            },
+            "conditionalVisibility": {
+              "parameterName": "isvisible",
+              "comparison": "isEqualTo",
+              "value": "yes"
+            },
+            "name": "parameters - 2"
+          },
+          {
+            "type": 10,
+            "content": {
+              "chartId": "workbook21e7a324-eddd-474d-9100-5b1cba2d594f",
+              "version": "MetricsItem/2.0",
+              "size": 0,
+              "chartType": 0,
+              "resourceType": "microsoft.keyvault/vaults",
+              "metricScope": 0,
+              "resourceParameter": "keyVaults",
+              "resourceIds": [
+                "{keyVaults}"
+              ],
+              "timeContextFromParameter": "TimeRange",
+              "timeContext": {
+                "durationMs": 0
+              },
+              "metrics": [
+                {
+                  "namespace": "microsoft.keyvault/vaults",
+                  "metric": "microsoft.keyvault/vaults--ServiceApiResult",
+                  "aggregation": 7
+                }
+              ],
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "Subscription",
+                    "formatter": 5
+                  },
+                  {
+                    "columnMatch": "Name",
+                    "formatter": 13,
+                    "formatOptions": {
+                      "linkTarget": "Resource",
+                      "showIcon": true
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.keyvault/vaults--ServiceApiResult",
+                    "formatter": 4,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    },
+                    "numberFormat": {
+                      "unit": 0,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.keyvault/vaults--ServiceApiResult Timeline",
+                    "formatter": 21,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    }
+                  }
+                ],
+                "rowLimit": 10000,
+                "sortBy": [
+                  {
+                    "itemKey": "$gen_bar_microsoft.keyvault/vaults--ServiceApiResult_2",
+                    "sortOrder": 2
+                  }
+                ],
+                "labelSettings": [
+                  {
+                    "columnId": "microsoft.keyvault/vaults--ServiceApiResult",
+                    "label": "Total Service Api Results (Count)"
+                  },
+                  {
+                    "columnId": "microsoft.keyvault/vaults--ServiceApiResult Timeline",
+                    "label": "Total Service Api Results Timeline"
+                  }
+                ]
+              },
+              "sortBy": [
+                {
+                  "itemKey": "$gen_bar_microsoft.keyvault/vaults--ServiceApiResult_2",
+                  "sortOrder": 2
+                }
+              ]
+            },
+            "name": "metric - 1"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "keyVaults"
+      },
+      "name": "NetworkInterfaces - Copy",
+      "styleSettings": {
+        "showBorder": true
+      }
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 9,
+            "content": {
+              "version": "KqlParameterItem/1.0",
+              "crossComponentResources": [
+                "{Subscription}"
+              ],
+              "parameters": [
+                {
+                  "id": "7c3986d6-6edd-4e71-a0d1-4d1d6dd851d6",
+                  "version": "KqlParameterItem/1.0",
+                  "name": "sqlDatabases",
+                  "label": "SQL Databases",
+                  "type": 5,
+                  "isRequired": true,
+                  "isGlobal": true,
+                  "multiSelect": true,
+                  "quote": "'",
+                  "delimiter": ",",
+                  "query": "Resources\r\n| where type =~ \"microsoft.sql/servers/databases\"\r\n| project id",
+                  "crossComponentResources": [
+                    "{Subscription}"
+                  ],
+                  "typeSettings": {
+                    "resourceTypeFilter": {
+                      "microsoft.sql/servers/databases": true
+                    },
+                    "additionalResourceOptions": [
+                      "value::all"
+                    ],
+                    "showDefault": false
+                  },
+                  "timeContext": {
+                    "durationMs": 86400000
+                  },
+                  "defaultValue": "value::all",
+                  "queryType": 1,
+                  "resourceType": "microsoft.resourcegraph/resources"
+                }
+              ],
+              "style": "pills",
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources"
+            },
+            "conditionalVisibility": {
+              "parameterName": "isvisible",
+              "comparison": "isEqualTo",
+              "value": "yes"
+            },
+            "name": "parameters - 2"
+          },
+          {
+            "type": 10,
+            "content": {
+              "chartId": "workbook0d53ae11-dfe8-4673-8cc3-d5e47330b671",
+              "version": "MetricsItem/2.0",
+              "size": 0,
+              "chartType": 0,
+              "resourceType": "microsoft.sql/servers/databases",
+              "metricScope": 0,
+              "resourceParameter": "sqlDatabases",
+              "resourceIds": [
+                "{sqlDatabases}"
+              ],
+              "timeContextFromParameter": "TimeRange",
+              "timeContext": {
+                "durationMs": 0
+              },
+              "metrics": [
+                {
+                  "namespace": "microsoft.sql/servers/databases",
+                  "metric": "microsoft.sql/servers/databases-Basic-cpu_percent",
+                  "aggregation": 4
+                }
+              ],
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "Subscription",
+                    "formatter": 5
+                  },
+                  {
+                    "columnMatch": "Name",
+                    "formatter": 13,
+                    "formatOptions": {
+                      "linkTarget": "Resource",
+                      "showIcon": true
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.sql/servers/databases-Basic-cpu_percent",
+                    "formatter": 4,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    },
+                    "numberFormat": {
+                      "unit": 1,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.sql/servers/databases-Basic-cpu_percent Timeline",
+                    "formatter": 21,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    }
+                  }
+                ],
+                "rowLimit": 10000,
+                "sortBy": [
+                  {
+                    "itemKey": "$gen_bar_microsoft.sql/servers/databases-Basic-cpu_percent_2",
+                    "sortOrder": 2
+                  }
+                ],
+                "labelSettings": [
+                  {
+                    "columnId": "microsoft.sql/servers/databases-Basic-cpu_percent",
+                    "label": "CPU percentage (Average)"
+                  },
+                  {
+                    "columnId": "microsoft.sql/servers/databases-Basic-cpu_percent Timeline",
+                    "label": "CPU percentage Timeline"
+                  }
+                ]
+              },
+              "sortBy": [
+                {
+                  "itemKey": "$gen_bar_microsoft.sql/servers/databases-Basic-cpu_percent_2",
+                  "sortOrder": 2
+                }
+              ]
+            },
+            "name": "metric - 1"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "sqlDatabases"
+      },
+      "name": "NetworkInterfaces - Copy - Copy",
       "styleSettings": {
         "showBorder": true
       }
