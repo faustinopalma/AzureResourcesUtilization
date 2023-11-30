@@ -126,61 +126,6 @@
       "name": "parameters - 0"
     },
     {
-      "type": 12,
-      "content": {
-        "version": "NotebookGroup/1.0",
-        "groupType": "editable",
-        "items": [
-          {
-            "type": 3,
-            "content": {
-              "version": "KqlItem/1.0",
-              "query": "resources\r\n| summarize Count=count() by type\r\n| sort by Count desc",
-              "size": 0,
-              "showExportToExcel": true,
-              "queryType": 1,
-              "resourceType": "microsoft.resourcegraph/resources",
-              "crossComponentResources": [
-                "{Subscription}"
-              ],
-              "gridSettings": {
-                "formatters": [
-                  {
-                    "columnMatch": "type",
-                    "formatter": 16,
-                    "formatOptions": {
-                      "linkTarget": "OpenBlade",
-                      "showIcon": true,
-                      "bladeOpenContext": {
-                        "bladeName": "BrowseResource",
-                        "extensionName": "HubsExtension",
-                        "bladeParameters": [
-                          {
-                            "name": "resourceType",
-                            "source": "column",
-                            "value": "type"
-                          }
-                        ]
-                      }
-                    }
-                  },
-                  {
-                    "columnMatch": "Count",
-                    "formatter": 4,
-                    "formatOptions": {
-                      "palette": "blue"
-                    }
-                  }
-                ]
-              }
-            },
-            "name": "query - 0"
-          }
-        ]
-      },
-      "name": "group - 8"
-    },
-    {
       "type": 11,
       "content": {
         "version": "LinkItem/1.0",
@@ -233,6 +178,22 @@
             "linkTarget": "parameter",
             "linkLabel": "Private DNS Zones",
             "subTarget": "privateDNSzones",
+            "style": "link"
+          },
+          {
+            "id": "010fe46d-dc62-44d6-ba32-d111b3bc183a",
+            "cellValue": "selectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Storage Accounts",
+            "subTarget": "storageAccounts",
+            "style": "link"
+          },
+          {
+            "id": "2f01f14d-c9d2-4192-b29f-87abc9e437b2",
+            "cellValue": "selectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Key Vaults",
+            "subTarget": "keyVaults",
             "style": "link"
           }
         ]
@@ -307,7 +268,7 @@
               ],
               "timeContextFromParameter": "TimeRange",
               "timeContext": {
-                "durationMs": 2592000000
+                "durationMs": 0
               },
               "metrics": [
                 {
@@ -417,6 +378,160 @@
         "value": "networkInterfaces"
       },
       "name": "NetworkInterfaces",
+      "styleSettings": {
+        "showBorder": true
+      }
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 9,
+            "content": {
+              "version": "KqlParameterItem/1.0",
+              "crossComponentResources": [
+                "{Subscription}"
+              ],
+              "parameters": [
+                {
+                  "id": "7c3986d6-6edd-4e71-a0d1-4d1d6dd851d6",
+                  "version": "KqlParameterItem/1.0",
+                  "name": "keyVaults",
+                  "label": "Key Vaults",
+                  "type": 5,
+                  "isRequired": true,
+                  "isGlobal": true,
+                  "multiSelect": true,
+                  "quote": "'",
+                  "delimiter": ",",
+                  "query": "Resources\r\n| where type =~ 'Microsoft.KeyVault/vaults'\r\n| project id",
+                  "crossComponentResources": [
+                    "{Subscription}"
+                  ],
+                  "typeSettings": {
+                    "additionalResourceOptions": [
+                      "value::all"
+                    ],
+                    "showDefault": false
+                  },
+                  "timeContext": {
+                    "durationMs": 86400000
+                  },
+                  "defaultValue": "value::all",
+                  "queryType": 1,
+                  "resourceType": "microsoft.resourcegraph/resources"
+                }
+              ],
+              "style": "pills",
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources"
+            },
+            "conditionalVisibility": {
+              "parameterName": "isvisible",
+              "comparison": "isEqualTo",
+              "value": "yes"
+            },
+            "name": "parameters - 2"
+          },
+          {
+            "type": 10,
+            "content": {
+              "chartId": "workbook21e7a324-eddd-474d-9100-5b1cba2d594f",
+              "version": "MetricsItem/2.0",
+              "size": 0,
+              "chartType": 0,
+              "resourceType": "microsoft.keyvault/vaults",
+              "metricScope": 0,
+              "resourceParameter": "keyVaults",
+              "resourceIds": [
+                "{keyVaults}"
+              ],
+              "timeContextFromParameter": "TimeRange",
+              "timeContext": {
+                "durationMs": 2592000000
+              },
+              "metrics": [
+                {
+                  "namespace": "microsoft.keyvault/vaults",
+                  "metric": "microsoft.keyvault/vaults--ServiceApiResult",
+                  "aggregation": 7
+                }
+              ],
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "Subscription",
+                    "formatter": 5
+                  },
+                  {
+                    "columnMatch": "Name",
+                    "formatter": 13,
+                    "formatOptions": {
+                      "linkTarget": "Resource",
+                      "showIcon": true
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.keyvault/vaults--ServiceApiResult",
+                    "formatter": 4,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    },
+                    "numberFormat": {
+                      "unit": 0,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.keyvault/vaults--ServiceApiResult Timeline",
+                    "formatter": 21,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    }
+                  }
+                ],
+                "rowLimit": 10000,
+                "sortBy": [
+                  {
+                    "itemKey": "$gen_bar_microsoft.keyvault/vaults--ServiceApiResult_2",
+                    "sortOrder": 2
+                  }
+                ],
+                "labelSettings": [
+                  {
+                    "columnId": "microsoft.keyvault/vaults--ServiceApiResult",
+                    "label": "Total Service Api Results (Count)"
+                  },
+                  {
+                    "columnId": "microsoft.keyvault/vaults--ServiceApiResult Timeline",
+                    "label": "Total Service Api Results Timeline"
+                  }
+                ]
+              },
+              "sortBy": [
+                {
+                  "itemKey": "$gen_bar_microsoft.keyvault/vaults--ServiceApiResult_2",
+                  "sortOrder": 2
+                }
+              ]
+            },
+            "name": "metric - 1"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "keyVaults"
+      },
+      "name": "NetworkInterfaces - Copy",
       "styleSettings": {
         "showBorder": true
       }
@@ -1328,7 +1443,7 @@
               ],
               "timeContextFromParameter": "TimeRange",
               "timeContext": {
-                "durationMs": 2592000000
+                "durationMs": 0
               },
               "metrics": [
                 {
@@ -1403,6 +1518,135 @@
         "value": "privateDNSzones"
       },
       "name": "group - 7",
+      "styleSettings": {
+        "showBorder": true
+      }
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 9,
+            "content": {
+              "version": "KqlParameterItem/1.0",
+              "crossComponentResources": [
+                "{Subscription}"
+              ],
+              "parameters": [
+                {
+                  "id": "83ba8000-4e89-49e8-a58d-abf05a2ddce5",
+                  "version": "KqlParameterItem/1.0",
+                  "name": "storageAccounts",
+                  "type": 5,
+                  "isRequired": true,
+                  "multiSelect": true,
+                  "quote": "'",
+                  "delimiter": ",",
+                  "query": "resources\r\n| where type =~ \"microsoft.storage/storageaccounts\"\r\n| project id",
+                  "crossComponentResources": [
+                    "{Subscription}"
+                  ],
+                  "typeSettings": {
+                    "additionalResourceOptions": [
+                      "value::all"
+                    ],
+                    "showDefault": false
+                  },
+                  "timeContext": {
+                    "durationMs": 86400000
+                  },
+                  "defaultValue": "value::all",
+                  "queryType": 1,
+                  "resourceType": "microsoft.resourcegraph/resources"
+                }
+              ],
+              "style": "pills",
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources"
+            },
+            "name": "parameters - 9"
+          },
+          {
+            "type": 10,
+            "content": {
+              "chartId": "workbookb764bb0c-550a-4aa6-a4d6-aa45892a68d3",
+              "version": "MetricsItem/2.0",
+              "size": 0,
+              "chartType": 0,
+              "resourceType": "microsoft.storage/storageaccounts",
+              "metricScope": 0,
+              "resourceParameter": "storageAccounts",
+              "resourceIds": [
+                "{storageAccounts}"
+              ],
+              "timeContextFromParameter": "TimeRange",
+              "timeContext": {
+                "durationMs": 0
+              },
+              "metrics": [
+                {
+                  "namespace": "microsoft.storage/storageaccounts",
+                  "metric": "microsoft.storage/storageaccounts--Egress",
+                  "aggregation": 1
+                }
+              ],
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "Subscription",
+                    "formatter": 5
+                  },
+                  {
+                    "columnMatch": "Name",
+                    "formatter": 13,
+                    "formatOptions": {
+                      "linkTarget": "Resource",
+                      "showIcon": true
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.storage/storageaccounts--Egress",
+                    "formatter": 1,
+                    "numberFormat": {
+                      "unit": 2,
+                      "options": null
+                    }
+                  },
+                  {
+                    "columnMatch": "microsoft.storage/storageaccounts--Egress Timeline",
+                    "formatter": 21,
+                    "formatOptions": {
+                      "min": 0,
+                      "palette": "blue"
+                    }
+                  }
+                ],
+                "rowLimit": 10000,
+                "labelSettings": [
+                  {
+                    "columnId": "microsoft.storage/storageaccounts--Egress",
+                    "label": "Egress (Sum)"
+                  },
+                  {
+                    "columnId": "microsoft.storage/storageaccounts--Egress Timeline",
+                    "label": "Egress Timeline"
+                  }
+                ]
+              }
+            },
+            "name": "metric - 1"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "storageAccounts"
+      },
+      "name": "storageAccounts",
       "styleSettings": {
         "showBorder": true
       }
